@@ -1,4 +1,5 @@
-from Crop_Yield_prediction_Model import predict_yield as py, final_model
+import pickle
+# from Crop_Yield_prediction_Model import predict_yield as py, final_model
 import numpy as np
 from flask import Flask, request, render_template
 app = Flask(__name__)
@@ -18,7 +19,9 @@ def index():
         temp = float(form['temp'])
         p = []
         p += [area, item, year, rainfall, pesticides, temp]
-        result = py([p], final_model)
+        # result = py([p], final_)
+        final_model = pickle.load(open("data.pickle", "rb"))
+        result = final_model.predict([p])
         return render_template('index.html', res=str(result))
     return render_template('index.html', res="Fill the details and Click Submit")
 

@@ -21,6 +21,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import sklearn
 from sklearn.preprocessing import LabelEncoder
+import pickle
 
 
 # In[2]:
@@ -640,17 +641,19 @@ final_rmse = np.sqrt(final_mse)
 final_rmse
 
 
+pickle.dump(final_model, open("data.pickle", "wb"))
+
 # In[94]:
 
 
 # Create a function to cover the entire flow
-def predict_yield(config, model):
-    if type(config) == dict:
-        df = pd.DataFrame(config)
-    else:
-        df = config
-    y_pred = model.predict(df)
-    return y_pred
+# def predict_yield(config, model):
+#     if type(config) == dict:
+#         df = pd.DataFrame(config)
+#     else:
+#         df = config
+#     y_pred = model.predict(df)
+#     return y_pred
 
 
 # In[95]:
@@ -680,3 +683,6 @@ print("Last ")
 
 
 # In[ ]:
+
+
+# with open("")
