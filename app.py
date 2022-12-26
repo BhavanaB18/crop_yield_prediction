@@ -1,11 +1,15 @@
 import pickle
 # from Crop_Yield_prediction_Model import predict_yield as py, final_model
-import numpy as np
 from flask import Flask, request, render_template
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+def start():
+    return render_template('first.html')
+
+
+@app.route('/result', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
 
@@ -26,4 +30,4 @@ def index():
     return render_template('index.html', res="Fill the details and Click Submit")
 
 
-# app.run()
+app.run()
